@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pinned Tab Reset の設定</title>
+    <link rel="icon" href="icons/icon32.png" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <img src="icons/icon128.png" alt="" width="40" height="40" />
+      <div>
+        <h1>Pinned Tab Reset</h1>
+        <p class="lead">タブごとの初期URLを確認・編集できます。初期URLを設定したタブは、閉じても初期URLで復活します。</p>
+      </div>
+    </header>
+
+    <section class="shortcut">
+      <span>初期URLに戻すショートカット</span>
+      <kbd id="shortcut">未設定</kbd>
+      <button type="button" class="link" id="open-shortcuts">変更する</button>
+    </section>
+
+    <section>
+      <h2>初期URLを設定中のタブ <span class="count" id="bound-count"></span></h2>
+      <ul class="list" id="bound-list"></ul>
+      <p class="empty" id="bound-empty" hidden>まだありません。タブで右クリック →「このページをタブの初期URLに設定」で追加できます。</p>
+    </section>
+
+    <section id="pinned-section">
+      <h2>初期URLが未設定の固定タブ <span class="count" id="pinned-count"></span></h2>
+      <ul class="list" id="pinned-list"></ul>
+    </section>
+
+    <section id="orphan-section">
+      <h2>開いているタブに紐付いていない初期URL <span class="count" id="orphan-count"></span></h2>
+      <p class="hint">ブラウザ再起動後などに、まだどのタブにも紐付いていない初期URLです。同じURL（固定タブなら同じドメイン）のタブがあれば自動で紐付きます。</p>
+      <ul class="list" id="orphan-list"></ul>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="options.js"></script>
+  </body>
+</html>

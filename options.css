@@ -1,0 +1,255 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f6f6fb;
+  --surface: #ffffff;
+  --border: #e3e3ee;
+  --text: #1d1d2b;
+  --muted: #6b6b80;
+  --accent: #5b4ff0;
+  --accent-text: #ffffff;
+  --accent-soft: #ecebff;
+  --danger: #c62f3c;
+  --focus: #8b7dff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17171f;
+    --surface: #212130;
+    --border: #33334a;
+    --text: #ececf4;
+    --muted: #9e9eb5;
+    --accent: #8b7dff;
+    --accent-text: #14141c;
+    --accent-soft: #2d2b4d;
+    --danger: #ff7a85;
+    --focus: #a99fff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 40px 24px 80px;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.6 system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+.page-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.lead,
+.hint {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.hint {
+  margin: -4px 0 12px;
+  font-size: 13px;
+}
+
+h2 {
+  margin: 32px 0 12px;
+  font-size: 15px;
+}
+
+.count {
+  margin-left: 4px;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.shortcut {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+kbd {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--bg);
+  font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.item-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.favicon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--accent-soft);
+}
+
+.title {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  flex: none;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.current {
+  overflow: hidden;
+  margin-top: -6px;
+  color: var(--muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.home-form label {
+  flex: none;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.home-form input {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.home-form input.dirty {
+  border-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+button {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+button.danger {
+  color: var(--danger);
+}
+
+button.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.empty {
+  margin: 0;
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  transform: translateX(-50%);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 20%);
+}
+
+.toast.error {
+  background: var(--danger);
+  color: #fff;
+}
