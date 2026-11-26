@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Pinned Tab Reset",
   "version": "0.1.0",
-  "description": "ショートカット一発でタブを設定済みの初期URLに戻す（Arc / Dia の固定タブ風）",
+  "description": "ショートカット一発でタブを設定済みの初期URLに戻す。閉じても初期URLで復活する固定タブを作れます。",
   "permissions": ["tabs", "contextMenus", "storage"],
   "background": {
     "service_worker": "background.js"

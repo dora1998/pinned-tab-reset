@@ -40,3 +40,15 @@ Arc / Dia の固定タブのように、ショートカット一発でタブを�
 ```sh
 python3 scripts/gen_icons.py
 ```
+
+## Chrome Web Store への提出
+
+```sh
+scripts/gen_promo.sh   # store/promo-small-440x280.png を生成（ImageMagick が必要）
+scripts/package.sh     # dist/pinned-tab-reset-<version>.zip を生成
+```
+
+- 掲載情報・権限の使用理由などの文面: [store/listing.md](store/listing.md)
+- スクリーンショットの置き場所と形式: [store/screenshots/README.md](store/screenshots/README.md)
+- プライバシーポリシー: [PRIVACY.md](PRIVACY.md)
+- 更新を提出するときは `manifest.json` の `version` を上げる

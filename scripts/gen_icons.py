@@ -3,7 +3,8 @@
 座標は 128x128 の設計グリッドで定義し、各サイズへ直接スーパーサンプリングで描画する。
 小さいサイズでは線を太くし、背景を全面に広げて潰れにくくしている。
 
-    python3 scripts/gen_icons.py
+    python3 scripts/gen_icons.py                      # icons/ に各サイズを出力
+    python3 scripts/gen_icons.py --glyph 160 out.png  # 背景なしの白い図柄だけを出力
 """
 
 import math
@@ -124,6 +125,25 @@ def build_shapes(p):
     return white
 
 
+def render_glyph(size):
+    """背景なしで白い図柄だけを描く（プロモーション画像用）。"""
+    white = build_shapes(params(128))
+    ss = 4
+    scale = 128 / size
+    rows = []
+    for py in range(size):
+        row = bytearray([0])
+        for px in range(size):
+            cov = sum(
+                white((px + (sx + 0.5) / ss) * scale, (py + (sy + 0.5) / ss) * scale)
+                for sy in range(ss)
+                for sx in range(ss)
+            )
+            row += bytes((255, 255, 255, round(255 * cov / (ss * ss))))
+        rows.append(bytes(row))
+    return b"".join(rows)
+
+
 def render(size):
     p = params(size)
     white = build_shapes(p)
@@ -169,6 +189,10 @@ def write_png(path, size, raw):
 
 
 def main():
+    if len(sys.argv) == 4 and sys.argv[1] == "--glyph":
+        size = int(sys.argv[2])
+        write_png(Path(sys.argv[3]), size, render_glyph(size))
+        return
     out = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent / "icons"
     out.mkdir(parents=True, exist_ok=True)
     for size in SIZES:
